@@ -1,14 +1,38 @@
+let contextmenuEvent
+
+const span = document.createElement('span')
+span.innerText = '这个位置没有图片，去其他位置试一下!';
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>  {
+    console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+    if (!!request.download) sendURL(getURL(contextmenuEvent))
+  }
+);
+
 document.addEventListener('contextmenu', function(event) {
-    const url = findImg(event.target, event)?.src;
-    if(!url) {
-        alert('这个位置没有图片，去其他位置试一下!')
-        throw new Error("can't find image");
-    }
+    contextmenuEvent = event;
+    chrome.storage.sync.get('isDownloadDirectlyChecked', ({isDownloadDirectlyChecked}) => {
+        if(isDownloadDirectlyChecked) {
+            sendURL(getURL(event));
+        }
+    })
+})
+
+function sendURL(url) {
     chrome.runtime.sendMessage({ url }, function(response) {
         console.log('收到来自后台的回复：' + response);
     });
+}
 
-})
+
+function getURL(event) {
+    const url = findImg(event.target, event)?.src;
+    if(!url) {
+        throw new Error("can't find image");
+    }
+    return url;
+}
+
 
 function findImg(el, event) {
     const parent = $(el).parent();

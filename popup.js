@@ -1,11 +1,11 @@
-chrome.storage.sync.get('isRightClickChecked', function({isRightClickChecked}) {
-    checkRightClick.checked = isRightClickChecked;
+chrome.storage.sync.get('isDownloadDirectlyChecked', function({isDownloadDirectlyChecked}) {
+    checkDownloadDirectly.checked = !!isDownloadDirectlyChecked;
 });
 
-checkRightClick.onclick = function(event) {
+checkDownloadDirectly.onclick = function(event) {
     let value = event.target.checked;
     console.log(value)
-    chrome.storage.sync.set({isRightClickChecked: value}, function() {
-        console.log('update isRightClickChecked')
+    chrome.storage.sync.set({isDownloadDirectlyChecked: value}, function() {
+        console.log(`${value ? 'enable' : 'disable'} download directly`)
     });
 };
