@@ -7,11 +7,7 @@
         "downloads",
         "activeTab",
         "declarativeContent",
-        "contextMenus",
-        "webNavigation",
-        "webRequest",
-        "http://*/",
-        "https://*/"
+        "contextMenus"
     ],
     "background": {
         "scripts": ["background.js"],
@@ -35,7 +31,6 @@
 			"run_at": "document_end"
 		}
     ],
-    "web_accessible_resources": ["js/inject-script.js"],
     "options_page": "options.html",
     "icons": {
         "16": "images/download-icon-16.png",
