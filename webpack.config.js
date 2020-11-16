@@ -5,7 +5,6 @@ var webpack = require("webpack"),
     path = require("path"),
     fileSystem = require("fs"),
     env = require("./webpack/env"),
-    CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
     CopyWebpackPlugin = require("copy-webpack-plugin"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
     WriteFilePlugin = require("write-file-webpack-plugin");
@@ -69,10 +68,31 @@ var options = {
         alias: alias,
     },
     plugins: [
-        // clean the build folder
-        new CleanWebpackPlugin(),
         // expose and write the allowed env vars on the compiled bundle
         new webpack.EnvironmentPlugin(["NODE_ENV"]),
+        new CopyWebpackPlugin([
+            {
+                from: "src/manifest.json",
+                transform: function (content, path) {
+                    // generates the manifest file using the package.json informations
+                    return Buffer.from(
+                        JSON.stringify({
+                            description: process.env.npm_package_description,
+                            version: process.env.npm_package_version,
+                            ...JSON.parse(content.toString()),
+                        })
+                    );
+                },
+            },
+            {
+                from: path.join(__dirname, "node_modules/jquery/dist/jquery.min.js"),
+                to: path.join(__dirname, "build/bundle/"),
+            },
+            {
+                from: path.join(__dirname, "node_modules/art-dialog/dist/dialog.js"),
+                to: path.join(__dirname, "build/bundle/")
+            },
+        ]),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src", "popup.html"),
             filename: "popup.html",
@@ -88,31 +108,8 @@ var options = {
         //   filename: "background.html",
         //   chunks: ["background"]
         // }),
-        new CopyWebpackPlugin([
-            {
-                from: "src/manifest.json",
-                transform: function (content, path) {
-                    // generates the manifest file using the package.json informations
-                    return Buffer.from(
-                        JSON.stringify({
-                            description: process.env.npm_package_description,
-                            version: process.env.npm_package_version,
-                            ...JSON.parse(content.toString()),
-                        })
-                    );
-                },
-            },
-        ]),
-        new CopyWebpackPlugin([
-            { from: "node_modules/jquery/dist/jquery.min.js", to: "./bundle/" },
-            { from: "node_modules/art-dialog/dist/dialog.js", to: "./bundle/" },
-        ]),
         new WriteFilePlugin(),
     ],
 };
-
-if (env.NODE_ENV === "development") {
-    options.devtool = "cheap-module-eval-source-map";
-}
 
 module.exports = options;
