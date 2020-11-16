@@ -1,4 +1,5 @@
 let contextmenuEvent
+console.log(dialog)
 
 const span = document.createElement('span')
 span.innerText = '这个位置没有图片，去其他位置试一下!';
