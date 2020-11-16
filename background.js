@@ -5,8 +5,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log('收到来自content-script的消息：');
     console.log(request, sender, sendResponse);
     url = request?.url;
-    chrome.storage.sync.get('isCheckRightClick', function({isCheckRightClick}) {
-        if(isCheckRightClick) {
+    chrome.storage.sync.get('isRightClickChecked', function({isRightClickChecked}) {
+        if(isRightClickChecked) {
             chrome.downloads.download({ url });
         }
     });
