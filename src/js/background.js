@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(() => {
                 {active: true, currentWindow: true},
                 tabs => chrome.tabs.sendMessage(
                     tabs[0].id,
-                    {download: true},
+                    {isContextMenuClicked: true},
                     function(response) {
                         console.log(response);
                     }
@@ -26,7 +26,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('收到来自content-script的消息：');
     console.log(request, sender, sendResponse);
-    url = request?.url;
+    let url = request?.url;
     if(url) chrome.downloads.download({ url });
     sendResponse('我是后台，我已收到你的消息：' + JSON.stringify(request));
 });

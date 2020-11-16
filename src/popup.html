@@ -19,7 +19,11 @@
         .container li {
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
+            margin-bottom: 5px;
+            margin-left: 5px;
+        }
+        label {
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -28,6 +32,9 @@
     <ul class="container">
         <li>
             <input type="checkbox" id="checkDownloadDirectly" /><label for="checkDownloadDirectly"> 右键点击直接下载</label>
+        </li>
+        <li>
+            <input type="checkbox" id="hiddenContextMenus" /><label for="hiddenContextMenus"> 隐藏右键菜单栏</label>
         </li>
     </ul>
     <!-- <script src="js/popup.js"></script> -->
