@@ -1,6 +1,7 @@
-let contextmenuEvent
-console.log(dialog)
+console.log('dialog: ', dialog)
+console.log('jquery: ', $)
 
+let contextmenuEvent
 const span = document.createElement('span')
 span.innerText = '这个位置没有图片，去其他位置试一下!';
 
@@ -29,6 +30,7 @@ function sendURL(url) {
 function getURL(event) {
     const url = findImg(event.target, event)?.src;
     if(!url) {
+        alert('cdfjoefjeo')
         throw new Error("can't find image");
     }
     return url;

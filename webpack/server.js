@@ -1,3 +1,5 @@
+// fork from github samuelsimoe/chrome-extension-webpack-boilerplate
+// https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate/tree/master/utils
 var WebpackDevServer = require("webpack-dev-server"),
     webpack = require("webpack"),
     config = require("../webpack.config"),
