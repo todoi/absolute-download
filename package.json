@@ -1,0 +1,20 @@
+{
+  "name": "absolute-download",
+  "version": "1.0.0",
+  "description": "chrome extansion  for downloading images",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/todoi/absolute-download.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/todoi/absolute-download/issues"
+  },
+  "homepage": "https://github.com/todoi/absolute-download#readme"
+}
