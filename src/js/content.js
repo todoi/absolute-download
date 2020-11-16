@@ -35,9 +35,7 @@ document.addEventListener("contextmenu", function (event) {
 });
 
 function sendURL(url) {
-    chrome.runtime.sendMessage({ url }, function (response) {
-        console.log("收到来自后台的回复：" + response);
-    });
+    chrome.runtime.sendMessage({ url }, response => console.log("收到来自后台的回复：" + response))
 }
 
 function getURL(event) {
@@ -46,14 +44,12 @@ function getURL(event) {
         y: event.clientY,
     };
     const url = findImg(event.target, mousePosition)?.src;
-    console.log("evnet: ", event);
     if (!url) {
         showToolTip(toolTipRef, { x: event.pageX, y: event.pageY }, {
             align: isContextMenusHidden ? 'bottom left' : 'top left'
         });
         throw new Error("can't find image");
     }
-    console.log("url: ", url);
     return url;
 }
 
@@ -73,18 +69,13 @@ function showToolTip(toolTipRef, { x, y }, opts = {}) {
 
 function findImg(el, mousePosition) {
     const imgs = $(el).find("img");
-    console.log("imgs: ", imgs);
     if (Object.prototype.toString.call(el) === "[object HTMLImageElement]") {
-        console.log(1);
         return el;
     } else if (imgs?.length) {
-        console.log(2);
         return [].slice.call(imgs).find((img) => isMouseOver(img, mousePosition));
     } else if (Object.prototype.toString.call(el) === "[object HTMLBodyElement]") {
-        console.log(3);
         return null;
     } else {
-        console.log(4);
         return findImg($(el).parent(), mousePosition);
     }
 }
@@ -92,7 +83,6 @@ function findImg(el, mousePosition) {
 function isMouseOver(el, mousePosition) {
     const { left, right, top, bottom } = el.getBoundingClientRect();
     const { x, y } = mousePosition;
-    console.log({ x, y, left, right, top, bottom });
     return x >= left && x <= right && y >= top && y <= bottom;
 }
 
