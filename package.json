@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/todoi/absolute-download/issues"
   },
-  "homepage": "https://github.com/todoi/absolute-download#readme"
+  "homepage": "https://github.com/todoi/absolute-download#readme",
+  "dependencies": {
+    "art-dialog": "^7.0.0"
+  }
 }
