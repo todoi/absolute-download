@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-art-dialog@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npm.taobao.org/art-dialog/download/art-dialog-7.0.0.tgz#a6a5a0e1f0d3d38dcb2b9fd8dfd2ca4e8a4dbd32"
-  integrity sha1-pqWg4fDT043LK5/Y39LKTopNvTI=
+jquery@1.12.4:
+  version "1.12.4"
+  resolved "https://registry.npm.taobao.org/jquery/download/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+  integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
