@@ -1,12 +1,12 @@
 {
   "name": "absolute-download",
   "version": "1.0.0",
-  "description": "chrome extansion  for downloading images",
+  "description": "chrome extension  for downloading images",
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node utils/build.js",
-    "start": "node utils/webserver.js"
+    "build": "node webpack/build.js",
+    "start": "node webpack/webserver.js"
   },
   "repository": {
     "type": "git",

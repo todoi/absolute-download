@@ -1,2 +1,2 @@
 # absolute-download
-chrome extansion  for downloading images
+chrome extension  for downloading images

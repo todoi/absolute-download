@@ -1,7 +1,7 @@
 var webpack = require("webpack"),
     path = require("path"),
     fileSystem = require("fs"),
-    env = require("./utils/env"),
+    env = require("./webpack/env"),
     CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin,
     CopyWebpackPlugin = require("copy-webpack-plugin"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
@@ -77,11 +77,11 @@ var options = {
       filename: "options.html",
       chunks: ["options"]
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "background.html"),
-      filename: "background.html",
-      chunks: ["background"]
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, "src", "background.html"),
+    //   filename: "background.html",
+    //   chunks: ["background"]
+    // }),
     new WriteFilePlugin()
   ]
 };
